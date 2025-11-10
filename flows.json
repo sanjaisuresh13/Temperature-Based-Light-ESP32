@@ -1,0 +1,331 @@
+[
+    {
+        "id": "265765addbb540c3",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "1",
+        "type": "mqtt in",
+        "z": "265765addbb540c3",
+        "name": "Temperature In",
+        "topic": "home/room1/temperature",
+        "qos": "2",
+        "broker": "hivemq-broker",
+        "inputs": 0,
+        "x": 340,
+        "y": 60,
+        "wires": [
+            [
+                "2",
+                "debug1",
+                "3"
+            ]
+        ]
+    },
+    {
+        "id": "debug1",
+        "type": "debug",
+        "z": "265765addbb540c3",
+        "name": "Temperature Debug",
+        "active": true,
+        "x": 520,
+        "y": 110,
+        "wires": []
+    },
+    {
+        "id": "2",
+        "type": "ui_gauge",
+        "z": "265765addbb540c3",
+        "name": "",
+        "group": "temperature-group",
+        "order": 1,
+        "width": "",
+        "height": "",
+        "gtype": "gage",
+        "title": "",
+        "label": "Temperature",
+        "format": "{{msg.payload}} °C",
+        "min": "0",
+        "max": "50",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 510,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "3",
+        "type": "function",
+        "z": "265765addbb540c3",
+        "name": "Format Temperature",
+        "func": "msg.payload = parseFloat(msg.payload); // Ensure numeric data\nreturn msg;",
+        "outputs": 1,
+        "x": 520,
+        "y": 160,
+        "wires": [
+            [
+                "4",
+                "5"
+            ]
+        ]
+    },
+    {
+        "id": "4",
+        "type": "ui_chart",
+        "z": "265765addbb540c3",
+        "name": "",
+        "group": "temperature-group",
+        "order": 2,
+        "width": "",
+        "height": "",
+        "label": "Temperature over Time",
+        "chartType": "line",
+        "xformat": "HH:mm:ss",
+        "nodata": "",
+        "dot": true,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": "10",
+        "removeOlderPoints": "",
+        "cutout": "",
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 720,
+        "y": 60,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5",
+        "type": "mqtt in",
+        "z": "265765addbb540c3",
+        "name": "Humidity In",
+        "topic": "home/room1/humidity",
+        "qos": "2",
+        "broker": "hivemq-broker",
+        "inputs": 0,
+        "x": 340,
+        "y": 260,
+        "wires": [
+            [
+                "6",
+                "debug2",
+                "7"
+            ]
+        ]
+    },
+    {
+        "id": "debug2",
+        "type": "debug",
+        "z": "265765addbb540c3",
+        "name": "Humidity Debug",
+        "active": true,
+        "x": 520,
+        "y": 310,
+        "wires": []
+    },
+    {
+        "id": "6",
+        "type": "ui_gauge",
+        "z": "265765addbb540c3",
+        "name": "",
+        "group": "humidity-group",
+        "order": 3,
+        "width": "",
+        "height": "",
+        "gtype": "gage",
+        "title": "",
+        "label": "Humidity",
+        "format": "{{msg.payload}} %",
+        "min": "0",
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 510,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "7",
+        "type": "function",
+        "z": "265765addbb540c3",
+        "name": "Format Humidity",
+        "func": "msg.payload = parseFloat(msg.payload); // Ensure numeric data\nreturn msg;",
+        "outputs": 1,
+        "x": 520,
+        "y": 360,
+        "wires": [
+            [
+                "8",
+                "9"
+            ]
+        ]
+    },
+    {
+        "id": "8",
+        "type": "ui_chart",
+        "z": "265765addbb540c3",
+        "name": "",
+        "group": "humidity-group",
+        "order": 4,
+        "width": "",
+        "height": "",
+        "label": "Humidity over Time",
+        "chartType": "line",
+        "xformat": "HH:mm:ss",
+        "nodata": "",
+        "dot": true,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": "10",
+        "removeOlderPoints": "",
+        "cutout": "",
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 720,
+        "y": 260,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9",
+        "type": "mqtt in",
+        "z": "265765addbb540c3",
+        "name": "Control NeoPixel Color",
+        "topic": "home/room1/light/color",
+        "qos": "0",
+        "broker": "hivemq-broker",
+        "inputs": 0,
+        "x": 340,
+        "y": 460,
+        "wires": [
+            [
+                "10"
+            ]
+        ]
+    },
+    {
+        "id": "10",
+        "type": "function",
+        "z": "265765addbb540c3",
+        "name": "Set NeoPixel Color",
+        "func": "var mode = msg.payload;\nvar r = 0, g = 0, b = 0;\n\nif (mode === 'auto') {\n    var temp = parseFloat(msg.temperature);\n    if (temp < 18) {\n        b = 255;  // Blue for cold\n    } else if (temp <= 28) {\n        g = 255;  // Green for comfortable\n    } else {\n        r = 255;  // Red for hot\n    }\n} else if (mode === 'red') {\n    r = 255;\n} else if (mode === 'blue') {\n    b = 255;\n} else if (mode === 'green') {\n    g = 255;\n}\n\nmsg.payload = { r: r, g: g, b: b };\nreturn msg;",
+        "outputs": 1,
+        "x": 520,
+        "y": 460,
+        "wires": [
+            [
+                "11"
+            ]
+        ]
+    },
+    {
+        "id": "11",
+        "type": "mqtt out",
+        "z": "265765addbb540c3",
+        "name": "Publish NeoPixel Color",
+        "topic": "home/room1/led/color",
+        "qos": "0",
+        "broker": "hivemq-broker",
+        "x": 800,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "hivemq-broker",
+        "type": "mqtt-broker",
+        "name": "HiveMQ Broker",
+        "broker": "broker.hivemq.com",
+        "port": "1883",
+        "clientid": "NodeRedClient",
+        "usetls": false,
+        "compatmode": true,
+        "keepalive": "60"
+    },
+    {
+        "id": "temperature-group",
+        "type": "ui_group",
+        "name": "Temperature Group",
+        "tab": "a55dc9fe8b13d5e0",
+        "order": 1,
+        "disp": true,
+        "width": "12",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "humidity-group",
+        "type": "ui_group",
+        "name": "Humidity Group",
+        "tab": "a55dc9fe8b13d5e0",
+        "order": 2,
+        "disp": true,
+        "width": "12",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "a55dc9fe8b13d5e0",
+        "type": "ui_tab",
+        "name": "temp",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "bf165ae09c0cf974",
+        "type": "global-config",
+        "env": [],
+        "modules": {
+            "node-red-dashboard": "3.6.6"
+        }
+    }
+]
